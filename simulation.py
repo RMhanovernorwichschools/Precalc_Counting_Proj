@@ -44,5 +44,5 @@ def find_D(intensity):
         marbles = gen_marbles(N)
         earned1 += run_rounds(intensity, marbles, strat_1)[1]
         earned2 += run_rounds(intensity, marbles, strat_2)[1]
-    print('In {0} rounds, strategy 1 earned {1}. Strategy 2 earned {2}'.format(intensity**2, earned1, earned2)
+    print('In {0} rounds, strategy 1 earned {1}. Strategy 2 earned {2}'.format(intensity**2, earned1, earned2))
     
