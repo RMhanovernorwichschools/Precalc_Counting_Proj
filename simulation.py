@@ -24,6 +24,13 @@ def strat_1(batch, winnings):
     else:
         return 0
         
+def strat_2(batch, winnings):
+    marble=draw(batch)
+    if marble == 'green':
+        return winnings
+    else:
+        return 0
+        
 def run_rounds(num, batch, strat):
     winnings=0
     for x in range(num):
