@@ -35,8 +35,11 @@ def run_rounds(num, batch, strat):
     winnings=0
     for x in range(num):
         winnings+=strat(batch, W)
-    print('In {0} rounds, '.format(num)+str(strat)+' made {0} dollars.'.format(winnings)) 
     return ([num, winnings])
 
-marbles = gen_marbles(N)
-run_rounds(100, marbles, strat_1)
+def find_D(intensity):
+    for a in range(intensity):
+        marbles = gen_marbles(N)
+        earned1 = run_rounds(intensity, marbles, strat_1)[1]
+        earned2 = run_rounds(intensity, marbles, strat_2)[1]
+        print('In 
