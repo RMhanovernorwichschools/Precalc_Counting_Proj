@@ -38,8 +38,11 @@ def run_rounds(num, batch, strat):
     return ([num, winnings])
 
 def find_D(intensity):
+    earned1=0
+    earned2=0
     for a in range(intensity):
         marbles = gen_marbles(N)
-        earned1 = run_rounds(intensity, marbles, strat_1)[1]
-        earned2 = run_rounds(intensity, marbles, strat_2)[1]
-        print('In 
+        earned1 += run_rounds(intensity, marbles, strat_1)[1]
+        earned2 += run_rounds(intensity, marbles, strat_2)[1]
+    print('In {0} rounds, strategy 1 earned {1}. Strategy 2 earned {2}'.format(intensity**2, earned1, earned2)
+    
