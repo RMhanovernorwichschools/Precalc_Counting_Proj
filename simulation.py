@@ -35,6 +35,17 @@ def strat_3(batch, winnings):
         return winnings
     else:
         return 0
+    
+def strat_4(batch, winnings):
+    first_draw=draw(batch)
+    if first_draw==draw(batch):
+        guess=first_draw
+    else:
+        guess=draw(batch)
+    if guess==draw(batch):
+        return winnings
+    else:
+        return 0
         
 def run_rounds(num, batch, strat):
     winnings=0
@@ -46,14 +57,17 @@ def find_winnings(intensity):
     earned1=0
     earned2=0
     earned3=0
+    earned4=0
     for a in range(intensity):
         marbles = gen_marbles(N)
         earned1 += run_rounds(1, marbles, strat_1)[1]
         earned2 += run_rounds(1, marbles, strat_2)[1]
         earned3 += run_rounds(1, marbles, strat_3)[1]
+        earned4 += run_rounds(1, marbles, strat_4)[1]
     print('''In {0} rounds: 
         Strategy 1 earned {1} per round. 
         Strategy 2 earned {2} per round.
-        Strategy 3 earned {3} per round.'''.format(intensity, earned1/intensity, earned2/intensity, earned3/intensity))
+        Strategy 3 earned {3} per round.
+        Strategy 4 earned {4} per round.'''.format(intensity, earned1/intensity, earned2/intensity, earned3/intensity, earned4/intensity))
     
-find_winnings(10000)
+find_winnings(1000)
