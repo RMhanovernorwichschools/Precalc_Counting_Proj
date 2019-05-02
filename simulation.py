@@ -18,7 +18,7 @@ def draw(l):
     return choice(l)
 
 def strat_1(batch, winnings):
-    if draw(batch == 'red':
+    if draw(batch) == 'red':
         return winnings
     else:
         return 0
@@ -56,4 +56,4 @@ def find_winnings(intensity):
         Strategy 2 earned {2} per round.
         Strategy 3 earned {3} per round.'''.format(intensity, earned1/intensity, earned2/intensity, earned3/intensity))
     
-#find_winnings(100000)
+find_winnings(10000)
