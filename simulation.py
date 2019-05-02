@@ -42,10 +42,10 @@ def find_D(intensity):
     earned2=0
     for a in range(intensity):
         marbles = gen_marbles(N)
-        earned1 += run_rounds(intensity, marbles, strat_1)[1]
-        earned2 += run_rounds(intensity, marbles, strat_2)[1]
+        earned1 += run_rounds(1, marbles, strat_1)[1]
+        earned2 += run_rounds(1, marbles, strat_2)[1]
     print('''In {0} rounds: 
         Strategy 1 earned {1} per round. 
-        Strategy 2 earned {2} per round.'''.format(intensity**2, earned1/intensity**2, earned2/intensity**2))
+        Strategy 2 earned {2} per round.'''.format(intensity, earned1/intensity, earned2/intensity))
     
 find_D(500)
