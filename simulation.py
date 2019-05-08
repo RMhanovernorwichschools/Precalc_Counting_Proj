@@ -17,6 +17,12 @@ def gen_marbles(n):
 def draw(l):
     return choice(l)
 
+def deepcopy (list):
+    l=[]
+    for x in list:
+        l.append(x)
+    return l
+
 def strat_1(batch, winnings):
     if draw(batch) == 'red':
         return winnings
@@ -48,6 +54,7 @@ def strat_4(batch, winnings):
         return 0
         
 def strat_5(batch, winnings):
+    total=deepcopy(batch)
     remaining=batch
     first_draw=draw(batch)
     remaining.remove(first_draw)
@@ -57,7 +64,7 @@ def strat_5(batch, winnings):
         guess=first_draw
     else:
         guess=draw(remaining)
-    if guess==draw(batch):
+    if guess==draw(total):
         return winnings
     else:
         return 0
