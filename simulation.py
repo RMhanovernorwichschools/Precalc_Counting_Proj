@@ -71,9 +71,10 @@ def strat_5(batch, winnings):
     else:
         return 0
         
-def run_rounds(num, batch, strat):
+def run_rounds(num, size, strat):
     winnings=0
     for x in range(num):
+        batch=gen_marbles(size)
         winnings+=strat(batch, W)
     return ([num, winnings])
 
@@ -84,17 +85,16 @@ def find_winnings(intensity, s1, s2, s3, s4, s5):
     earned4=0
     earned5=0
     for a in range(intensity):
-        marbles = gen_marbles(N)
         if s1==True:
-            earned1 += run_rounds(1, marbles, strat_1)[1]
+            earned1 += run_rounds(1, N, strat_1)[1]
         if s2==True:
-            earned2 += run_rounds(1, marbles, strat_2)[1]
+            earned2 += run_rounds(1, N, strat_2)[1]
         if s3==True:
-            earned3 += run_rounds(1, marbles, strat_3)[1]
+            earned3 += run_rounds(1, N, strat_3)[1]
         if s4==True:
-            earned4 += run_rounds(1, marbles, strat_4)[1]
+            earned4 += run_rounds(1, N, strat_4)[1]
         if s5==True:
-            earned5 += run_rounds(1, marbles, strat_5)[1]
+            earned5 += run_rounds(1, N, strat_5)[1]
     rep='''In {0} rounds: 
         '''.format(intensity)
     if s1==True:
@@ -126,6 +126,34 @@ while running==True:
         running=False
     elif direc=='D':
         length=input('How many rounds to find D? Enter a number like 1 or 100. ')
+        D_1=run_rounds(int(length), N,strat_1)
+        D_2=run_rounds(int(length), N,strat_2)
+        print('D='+str((D_1[1]+D_2[1])/(D_1[0]+D_2[0])))
+    elif direc=='P':
+        length=input('How many rounds to find P? Enter a number like 1 or 100. ')
+        D_1=run_rounds(int(length), N,strat_1)
+        D_2=run_rounds(int(length), N,strat_2)
+        D=(D_1[1]+D_2[1])/(D_1[0]+D_2[0])
+        P_1=run_rounds(int(length), N,strat_3)
+        PD=P_1[1]/P_1[0]
+        print('P='+str(PD-D))
+    elif direc=='R':
+        length=input('How many rounds to find R? Enter a number like 1 or 100. ')
+        D_1=run_rounds(int(length), N,strat_1)
+        D_2=run_rounds(int(length), N,strat_2)
+        D=(D_1[1]+D_2[1])/(D_1[0]+D_2[0])
+        R_1=run_rounds(int(length), N,strat_4)
+        RD=R_1[1]/R_1[0]
+        print('R='+str(RD-D))
+    elif direc=='S':
+        length=input('How many rounds to find P? Enter a number like 1 or 100. ')
+        D_1=run_rounds(int(length), N,strat_1)
+        D_2=run_rounds(int(length), N,strat_2)
+        D=(D_1[1]+D_2[1])/(D_1[0]+D_2[0])
+        S_1=run_rounds(int(length), N,strat_5)
+        SD=S_1[1]/S_1[0]
+        print('S='+str(SD-D))
+    else:
         s1_direc=str_to_bool(input('Include strategy 1 in simulation? Enter "Y" or "y" without quotes for yes. '))
         s2_direc=str_to_bool(input('Include strategy 2 in simulation? Enter "Y" or "y" without quotes for yes. '))
         s3_direc=str_to_bool(input('Include strategy 3 in simulation? Same directions apply. '))
