@@ -1,3 +1,5 @@
+#CLICK "GO" FOR EASIEST RUN OF SIMULATION
+
 from random import randint, choice
 
 N=10 #number of marbles
@@ -75,7 +77,7 @@ def run_rounds(num, batch, strat):
         winnings+=strat(batch, W)
     return ([num, winnings])
 
-def find_winnings(intensity):
+def find_winnings(intensity, s1, s2, s3, s4, s5):
     earned1=0
     earned2=0
     earned3=0
@@ -83,16 +85,52 @@ def find_winnings(intensity):
     earned5=0
     for a in range(intensity):
         marbles = gen_marbles(N)
-        earned1 += run_rounds(1, marbles, strat_1)[1]
-        earned2 += run_rounds(1, marbles, strat_2)[1]
-        earned3 += run_rounds(1, marbles, strat_3)[1]
-        earned4 += run_rounds(1, marbles, strat_4)[1]
-        earned5 += run_rounds(1, marbles, strat_5)[1]
-    print('''In {0} rounds: 
-        Strategy 1 earned {1} per round. 
-        Strategy 2 earned {2} per round.
-        Strategy 3 earned {3} per round.
-        Strategy 4 earned {4} per round.
-        Strategy 5 earned {5} per round.'''.format(intensity, earned1/intensity, earned2/intensity, earned3/intensity, earned4/intensity, earned5/intensity))
+        if s1==True:
+            earned1 += run_rounds(1, marbles, strat_1)[1]
+        if s2==True:
+            earned2 += run_rounds(1, marbles, strat_2)[1]
+        if s3==True:
+            earned3 += run_rounds(1, marbles, strat_3)[1]
+        if s4==True:
+            earned4 += run_rounds(1, marbles, strat_4)[1]
+        if s5==True:
+            earned5 += run_rounds(1, marbles, strat_5)[1]
+    rep='''In {0} rounds: 
+        '''.format(intensity)
+    if s1==True:
+        rep+='''Strategy 1 earned {0} per round. 
+        '''.format(earned1/intensity)
+    if s2==True:
+        rep+='''Strategy 2 earned {0} per round.
+        '''.format(earned2/intensity)
+    if s3==True:
+        rep+='''Strategy 3 earned {0} per round.
+        '''.format(earned3/intensity)
+    if s4==True:
+        rep+='''Strategy 4 earned {0} per round.
+        '''.format(earned4/intensity)
+    if s5==True:
+        rep+='''Strategy 5 earned {0} per round.'''.format(earned5/intensity)
+    print(rep)
     
-find_winnings(1000)
+def str_to_bool(s):
+    if s=='y' or s=='Y':
+        return True
+    else:
+        return False
+
+running=True
+while running==True:
+    direc=input('Press ENTER to exit. Type something, then press ENTER to run. ')
+    if direc=='':
+        running=False
+    else:
+        s1_direc=str_to_bool(input('Include strategy 1 in simulation? Enter "Y" or "y" without quotes for yes. '))
+        s2_direc=str_to_bool(input('Include strategy 2 in simulation? Enter "Y" or "y" without quotes for yes. '))
+        s3_direc=str_to_bool(input('Include strategy 3 in simulation? Same directions apply. '))
+        s4_direc=str_to_bool(input('Include strategy 4 in simulation? '))
+        s5_direc=str_to_bool(input('Include strategy 5 in simulation? '))
+        length=input('How many rounds? Enter a number like 1 or 100. ')
+        find_winnings(int(length),s1_direc, s2_direc, s3_direc, s4_direc, s5_direc)
+        
+        
