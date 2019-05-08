@@ -121,10 +121,11 @@ def str_to_bool(s):
 
 running=True
 while running==True:
-    direc=input('Press ENTER to exit. Type something, then press ENTER to run. ')
+    direc=input('Press ENTER without typing to exit. Type D to find D. Type P to find P. Type R to find R, type S to find S, and type anything else to run general simulation. ')
     if direc=='':
         running=False
-    else:
+    elif direc=='D':
+        length=input('How many rounds to find D? Enter a number like 1 or 100. ')
         s1_direc=str_to_bool(input('Include strategy 1 in simulation? Enter "Y" or "y" without quotes for yes. '))
         s2_direc=str_to_bool(input('Include strategy 2 in simulation? Enter "Y" or "y" without quotes for yes. '))
         s3_direc=str_to_bool(input('Include strategy 3 in simulation? Same directions apply. '))
